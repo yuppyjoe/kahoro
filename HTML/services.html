@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Our Services - Kahoro Mounts & Frames</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+  <!-- Header -->
+  <div id="header-container"></div>
+
+  <main class="max-w-6xl mx-auto py-10 px-4">
+    <h2 class="text-3xl font-bold text-center mb-10">Our Services</h2>
+    
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+      <!-- Service Item -->
+
+      <a href="../HTML/services/photo-mounts.html" class="bg-white rounded-xl shadow p-4 hover:shadow-lg transition block">
+        <img src="../../assets/mounts/A1.jpg" alt="Photo Mounts" class="rounded mb-4 w-full object-cover">
+        <h3 class="text-xl font-semibold">Photo Mounts</h3>
+        <p class="text-sm text-gray-600">Golden-edged mounts in A5 to A0 and custom sizes.</p>
+      </a>
+      <a href="../HTML/services/prints.html" class="bg-white rounded-xl shadow p-4 hover:shadow-lg transition block">
+        <img src="https://picsum.photos/300/200?random=2" alt="Photo Mounts" class="rounded mb-4 w-full object-cover">
+        <h3 class="text-xl font-semibold">Prints</h3>
+        <p class="text-sm text-gray-600"> Lorem ipsum dolor sit, amet consectetur adipisicing elit. Necessitatibus, laudantium! </p>
+      </a>
+      <a href="../HTML/services/hooks-screws-and-stands.html" class="bg-white rounded-xl shadow p-4 hover:shadow-lg transition block">
+        <img src="https://picsum.photos/300/200?random=1" alt="Wall Hooks" class="rounded mb-4 w-full object-cover">
+        <h3 class="text-xl font-semibold">Wall Hooks & Screws</h3>
+        <p class="text-sm text-gray-600">Strong and stylish options for hanging your frames.</p>
+      </a>
+
+      <a href="../HTML/services/mdf-boards.html" class="bg-white rounded-xl shadow p-4 hover:shadow-lg transition block">
+        <img src="https://picsum.photos/300/200?random=5" alt="Imported Boards" class="rounded mb-4 w-full object-cover">
+        <h3 class="text-xl font-semibold">Imported Boards</h3>
+        <p class="text-sm text-gray-600">Top-quality MDF boards for various uses.</p>
+      </a>
+
+      <a href="../HTML/services/photo-frames.html" class="bg-white rounded-xl shadow p-4 hover:shadow-lg transition block">
+        <img src="https://picsum.photos/300/200?random=3" alt="Photo Frames" class="rounded mb-4 w-full object-cover">
+        <h3 class="text-xl font-semibold">Photo Frames</h3>
+        <p class="text-sm text-gray-600">Wooden and fiber frames for portraits and art.</p>
+      </a>
+
+      <a href="../HTML/services/photo-books.html" class="bg-white rounded-xl shadow p-4 hover:shadow-lg transition block">
+        <img src="https://picsum.photos/300/200?random=4" alt="Photobooks" class="rounded mb-4 w-full object-cover">
+        <h3 class="text-xl font-semibold">Photobooks</h3>
+        <p class="text-sm text-gray-600">Custom-made bound photobooks for all occasions.</p>
+      </a>
+
+      <a href="../HTML/services/pvc.html" class="bg-white rounded-xl shadow p-4 hover:shadow-lg transition block">
+        <img src="https://picsum.photos/300/200?random=6" alt="PVC" class="rounded mb-4 w-full object-cover">
+        <h3 class="text-xl font-semibold">PVC Sheets</h3>
+        <p class="text-sm text-gray-600">PVC sheets for photobook covers and lamination.</p>
+      </a>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer id="footer-container"></footer>
+
+  <script>
+    fetch("../partials/header.html")
+      .then(res => res.text())
+      .then(data => document.getElementById("header-container").innerHTML = data);
+
+    fetch("../partials/footer.html")
+      .then(res => res.text())
+      .then(data => document.getElementById("footer-container").innerHTML = data);
+  </script>
+
+</body>
+</html>

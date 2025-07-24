@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Portfolio - Kahoro</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.css" />
+
+  <style>
+    @media (min-width: 640px) {
+      .masonry {
+        column-count: 2;
+        column-gap: 1rem;
+      }
+    }
+    @media (min-width: 1024px) {
+      .masonry {
+        column-count: 6;
+      }
+    }
+    .masonry-item {
+      break-inside: avoid;
+      margin-bottom: 1rem;
+    }
+
+    .image-container {
+      position: relative;
+      overflow: hidden;
+      border-radius: 0.5rem;
+    }
+    .image-overlay {
+      position: absolute;
+      inset: 0;
+      background-color: rgba(0, 0, 0, 0.6);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.3s ease-in-out;
+      color: white;
+      font-size: 0.875rem;
+      font-weight: 600;
+      text-align: center;
+      padding: 0.5rem;
+    }
+    .image-container:hover .image-overlay {
+      opacity: 1;
+    }
+  </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+  <!-- Header -->
+  <div id="header-container"></div>
+
+  <main class="max-w-6xl mx-auto py-10 px-4">
+    <h2 class="text-3xl font-bold text-center mb-8">Our Work</h2>
+
+    <!-- Filters -->
+    <div class="flex flex-wrap justify-center gap-4 mb-8">
+      <button class="filter-btn bg-gray-200 px-4 py-2 rounded hover:bg-black hover:text-white" data-category="all">All</button>
+      <button class="filter-btn bg-gray-200 px-4 py-2 rounded hover:bg-black hover:text-white" data-category="frames">Frames</button>
+      <button class="filter-btn bg-gray-200 px-4 py-2 rounded hover:bg-black hover:text-white" data-category="mounts">Mounts</button>
+      <button class="filter-btn bg-gray-200 px-4 py-2 rounded hover:bg-black hover:text-white" data-category="photobooks">Photobooks</button>
+    </div>
+
+    <!-- Masonry Gallery -->
+    <div class="masonry" id="portfolio-gallery">
+      <!-- Items loaded here -->
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <div id="footer-container"></div>
+
+  <!-- Fancybox JS -->
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.js"></script>
+
+  <script>
+    // Load header and footer
+    fetch("../../partials/header.html")
+      .then(res => res.text())
+      .then(data => document.getElementById("header-container").innerHTML = data);
+
+    fetch("../../partials/footer.html")
+      .then(res => res.text())
+      .then(data => document.getElementById("footer-container").innerHTML = data);
+
+    // Portfolio items
+    const portfolioImages = [
+      { src: "../assets/mounts/2568.jpg", category: "mounts", title: "A2 Mount - Matte Finish" },
+      { src: "../assets/mounts/A0 Gold.jpg", category: "mounts", title: "A0 Gold Edge" },
+      { src: "../assets/mounts/A0 Normal.jpg", category: "mounts", title: "A0 Standard White" },
+      { src: "../assets/mounts/A0 Silver.jpg", category: "mounts", title: "A0 Silver Trim" },
+      { src: "../assets/mounts/A00.jpg", category: "mounts", title: "A00 Custom Size" },
+      { src: "../assets/mounts/A1 Gold.jpg", category: "mounts", title: "A1 Gold Frame" },
+      { src: "../assets/mounts/A1.jpg", category: "frames", title: "A1 Wood Frame" },
+      { src: "../assets/mounts/A2 Normal.jpg", category: "mounts", title: "A2 Standard White" },
+      { src: "../assets/mounts/A3.jpg", category: "mounts", title: "A3 Classic Mount" },
+      { src: "../assets/mounts/A4.jpg", category: "mounts", title: "A4 Plain Mount" },
+      { src: "../assets/mounts/A4 Gold.jpg", category: "mounts", title: "A4 Gold Edge" },
+      { src: "../assets/mounts/A5.jpg", category: "mounts", title: "A5 Simple Mount" },
+      { src: "../assets/mounts/A5 Gold.jpg", category: "mounts", title: "A5 Gold Style" },
+      { src: "../assets/mounts/GOLD DESIGNS copy-4.jpg", category: "mounts", title: "Gold Decorative" },
+      { src: "../assets/mounts/IMG20250204104602-Recovered.jpg", category: "mounts", title: "Restored Mount" },
+      { src: "../assets/mounts/IMG20250716174907.jpg", category: "mounts", title: "Modern Display" },
+      { src: "../assets/mounts/IMG20250716175604.jpg", category: "mounts", title: "Premium Finish" },
+      { src: "../assets/mounts/IMG20250716175701.jpg", category: "mounts", title: "Clean Cut" },
+      { src: "../assets/mounts/IMG20250716175703.jpg", category: "mounts", title: "Photo Mount A1" },
+      { src: "../assets/mounts/IMG20250721150729 copy-2.jpg", category: "mounts", title: "Large Mount A0" },
+      { src: "../assets/mounts/2568.jpg", category: "photobooks", title: "Photobook Sample" },
+      { src: "../assets/mounts/A1.jpg", category: "photobooks", title: "Hardcover Photobook" }
+    ];
+
+    const gallery = document.getElementById("portfolio-gallery");
+
+    portfolioImages.forEach(item => {
+      const div = document.createElement("div");
+      div.className = `masonry-item portfolio-item`;
+      div.setAttribute("data-category", item.category);
+      div.innerHTML = `
+        <div class="image-container">
+          <a href="${item.src}" data-fancybox="gallery" data-caption="${item.title || item.category}">
+            <img src="${item.src}" alt="${item.title || item.category}" class="w-full h-auto transition duration-300 ease-in-out">
+            <div class="image-overlay">${item.title || item.category}</div>
+          </a>
+        </div>
+      `;
+      gallery.appendChild(div);
+    });
+
+    // Filtering logic
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const category = btn.getAttribute('data-category');
+        document.querySelectorAll('.portfolio-item').forEach(item => {
+          if (category === 'all' || item.dataset.category === category) {
+            item.style.display = 'block';
+          } else {
+            item.style.display = 'none';
+          }
+        });
+      });
+    });
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Photo Mounts - Kahoro</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+  <!-- Header -->
+  <div id="header-container"></div>
+
+  <main class="max-w-6xl mx-auto py-10 px-4">
+    <h2 class="text-3xl font-bold text-center mb-10">Photo Mounts Assorted</h2>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6" id="photo-mount-container">
+      <!-- Mounts will be loaded here -->
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer id="footer-container"></footer>
+
+  <script>
+    // Load header and footer
+    fetch("../../partials/header.html")
+      .then(res => res.text())
+      .then(data => document.getElementById("header-container").innerHTML = data);
+  
+    fetch("../../partials/footer.html")
+      .then(res => res.text())
+      .then(data => document.getElementById("footer-container").innerHTML = data);
+  
+    // Mounts data
+    const container = document.getElementById("photo-mount-container");
+  
+    const mounts = [
+      { name: "A5 Golden Mount", price: 500, image: "../../assets/mounts/A5 Gold.jpg" },
+      { name: "A5 Normal Mount", price: 350, image: "../../assets/mounts/A5.jpg" },
+      { name: "A4 Golden Mount", price: 700, image: "../../assets/mounts/A4 Gold.jpg" },
+      { name: "A4 Normal Mount", price: 500, image: "../../assets/mounts/A4.jpg" },
+      { name: "A3 Golden Mount", price: 1300, image: "../../assets/mounts/A3 Gold.jpg" },
+      { name: "A3 Normal Mount", price: 900, image: "../../assets/mounts/A3.jpg" },
+      { name: "A2 Golden Mount", price: 2500, image: "../../assets/mounts/A2 Gold.jpg" },
+      { name: "A2 Normal Mount", price: 1800, image: "../../assets/mounts/A2 Normal.jpg" },
+      { name: "A1 Golden Mount", price: 4200, image: "../../assets/mounts/A1 Gold.jpg" },
+      { name: "A1 Normal Mount", price: 3500, image: "../../assets/mounts/A1.jpg" },
+      { name: "A0 Golden Mount", price: 9000, image: "../../assets/mounts/A0 Gold.jpg" },
+      { name: "A0 Normal Mount", price: 7500, image: "../../assets/mounts/A0 Normal.jpg" },
+      { name: "Custom Size Mount", price: null, image: "../../assets/mounts/pope.jpg" },
+    ];
+  
+    mounts.forEach((item, index) => {
+      fetch("../../partials/service/photo-mount.html")
+        .then(res => res.text())
+        .then(template => {
+          const isCustom = item.name.includes("Custom");
+  
+          let cardHTML = template
+            .replace(/{{IMAGE}}/g, item.image)
+            .replace(/{{NAME}}/g, item.name)
+            .replace(/{{PRICE}}/g, isCustom ? "Enter size in cm or inches" : `KES ${item.price}`);
+  
+          if (isCustom) {
+            const formId = `custom-form-${index}`;
+            const buttonId = `whatsapp-btn-${index}`;
+            const unitId = `unit-${index}`;
+            const widthId = `width-${index}`;
+            const heightId = `height-${index}`;
+  
+            const customForm = `
+              <div class="mt-2 space-y-2">
+                <div class="flex items-center gap-2">
+                  <label class="text-sm">Unit:</label>
+                  <select id="${unitId}" class="border rounded p-1 text-sm">
+                    <option value="cm">cm</option>
+                    <option value="inches">inches</option>
+                  </select>
+                </div>
+                <div class="flex items-center gap-2">
+                  <input id="${widthId}" type="number" placeholder="Width" class="w-full border rounded p-2 text-sm" />
+                  <input id="${heightId}" type="number" placeholder="Height" class="w-full border rounded p-2 text-sm" />
+                </div>
+                <button id="${buttonId}" class="bg-green-600 text-white text-sm px-4 py-2 rounded hover:bg-green-700 w-full">
+                  WhatsApp to Order
+                </button>
+              </div>
+            `;
+  
+            cardHTML = cardHTML.replace(/{{WHATSAPP_LINK}}/g, "#") + customForm;
+  
+            container.innerHTML += `<div id="${formId}">${cardHTML}</div>`;
+  
+            // Delay to attach listener
+            setTimeout(() => {
+              const btn = document.getElementById(buttonId);
+              btn.addEventListener("click", () => {
+                const unit = document.getElementById(unitId).value;
+                const width = document.getElementById(widthId).value;
+                const height = document.getElementById(heightId).value;
+  
+                if (!width || !height) {
+                  alert("Please enter both width and height.");
+                  return;
+                }
+  
+                const message = `I'm interested in a Custom Size Photo Mount of ${width} x ${height} ${unit}. Please share pricing.`;
+                const link = `https://wa.me/254712227387?text=${encodeURIComponent(message)}`;
+                window.open(link, "_blank");
+              });
+            }, 100);
+          } else {
+            const message = `I'm interested in the ${item.name} - Size: ${item.name.split(' ')[0]}, Price: KES ${item.price}`;
+            const link = `https://wa.me/254712227387?text=${encodeURIComponent(message)}`;
+            cardHTML = cardHTML.replace(/{{WHATSAPP_LINK}}/g, link);
+            container.innerHTML += cardHTML;
+          }
+        });
+    });
+  </script>
+  
+  
+
+</body>
+</html>

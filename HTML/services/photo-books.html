@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Photo Books - Kahoro</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+  <!-- Header -->
+  <div id="header-container"></div>
+
+  <!-- Main Content -->
+  <main class="max-w-7xl mx-auto px-4 py-12">
+    <h1 class="text-4xl font-bold text-center text-gray-800 mb-4">Premium Photo Books</h1>
+    <p class="text-center text-gray-500 mb-12 max-w-2xl mx-auto">
+      Preserve your most cherished memories in high-quality, beautifully bound photo books.
+      Available in a variety of elegant sizes and finishes.
+    </p>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8" id="photo-book-container">
+      <!-- Cards will be injected here -->
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <div id="footer-container"></div>
+
+  <!-- JS Logic -->
+  <script>
+    // Load header and footer
+    fetch("../../partials/header.html")
+      .then(res => res.text())
+      .then(data => document.getElementById("header-container").innerHTML = data);
+
+    fetch("../../partials/footer.html")
+      .then(res => res.text())
+      .then(data => document.getElementById("footer-container").innerHTML = data);
+
+    // Book Data
+    const container = document.getElementById("photo-book-container");
+
+    const books = [
+      { name: "Hardcover 6x8", size: "6x8 inches", price: 2000, image: "https://picsum.photos/seed/book1/400/300" },
+      { name: "Hardcover 8x10", size: "8x10 inches", price: 2500, image: "https://picsum.photos/seed/book2/400/300" },
+      { name: "Hardcover 10x10", size: "10x10 inches", price: 2800, image: "https://picsum.photos/seed/book3/400/300" },
+      { name: "Layflat 10x12", size: "10x12 inches", price: 3200, image: "https://picsum.photos/seed/book4/400/300" },
+      { name: "Layflat 12x12", size: "12x12 inches", price: 3800, image: "https://picsum.photos/seed/book5/400/300" },
+      { name: "Premium 12x16", size: "12x16 inches", price: 4500, image: "https://picsum.photos/seed/book6/400/300" },
+    ];
+
+    books.forEach(book => {
+      fetch("../../partials/service/photo-book.html")
+        .then(res => res.text())
+        .then(template => {
+          const message = `Hello, I'm interested in the "${book.name}" photo book (${book.size}) for KES ${book.price}. Please share more details.`;
+          const link = `https://wa.me/254712227387?text=${encodeURIComponent(message)}`;
+
+          const card = template
+            .replace(/{{IMAGE}}/g, book.image)
+            .replace(/{{NAME}}/g, book.name)
+            .replace(/{{SIZE}}/g, book.size)
+            .replace(/{{PRICE}}/g, `KES ${book.price}`)
+            .replace(/{{WHATSAPP_LINK}}/g, `<a href="${link}" target="_blank" class="block w-full text-center bg-green-600 hover:bg-green-700 text-white py-2 rounded-md text-sm font-medium">Order via WhatsApp</a>`);
+
+          container.innerHTML += card;
+        });
+    });
+  </script>
+</body>
+</html>

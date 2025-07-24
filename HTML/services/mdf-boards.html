@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Photo Mounts - Kahoro</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+  <!-- Header -->
+  <div id="header-container"></div>
+
+  <main class="max-w-6xl mx-auto py-10 px-4">
+    <h2 class="text-3xl font-bold text-center mb-10">Mounting Boards</h2>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6" id="photo-mount-container">
+      <!-- Mounts will be loaded here -->
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer id="footer-container"></footer>
+
+  <script>
+    // Load header and footer
+    fetch("../../partials/header.html")
+      .then(res => res.text())
+      .then(data => document.getElementById("header-container").innerHTML = data);
+  
+    fetch("../../partials/footer.html")
+      .then(res => res.text())
+      .then(data => document.getElementById("footer-container").innerHTML = data);
+  
+    // MDF Boards data
+    const container = document.getElementById("photo-mount-container");
+  
+    const mdfBoards = [
+      { name: "A5 MDF Board ", price: 150, image: "https://picsum.photos/300/200?random=31" },
+      { name: "A4 MDF Board ", price: 220, image: "https://picsum.photos/300/200?random=32" },
+      { name: "A3 MDF Board ", price: 450, image: "https://picsum.photos/300/200?random=33" },
+      { name: "A2 MDF Board ", price: 800, image: "https://picsum.photos/300/200?random=34" },
+      { name: "A1 MDF Board ", price: 1300, image: "https://picsum.photos/300/200?random=35" },
+    ];
+  
+    mdfBoards.forEach(item => {
+      fetch("../../partials/service/photo-mount.html")
+        .then(res => res.text())
+        .then(template => {
+          const message = `I'm interested in the ${item.name}, priced at KES ${item.price}.`;
+          const link = `https://wa.me/254712227387?text=${encodeURIComponent(message)}`;
+          const cardHTML = template
+            .replace(/{{IMAGE}}/g, item.image)
+            .replace(/{{NAME}}/g, item.name)
+            .replace(/{{PRICE}}/g, `KES ${item.price}`)
+            .replace(/{{WHATSAPP_LINK}}/g, link);
+  
+          container.innerHTML += cardHTML;
+        });
+    });
+  </script>
+  
+  
+  
+
+</body>
+</html>

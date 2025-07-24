@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Wall Hooks - Kahoro</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+  <!-- Header -->
+  <div id="header-container"></div>
+
+  <main class="max-w-6xl mx-auto py-10 px-4">
+    <h2 class="text-3xl font-bold text-center mb-10">Wall Hooks</h2>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6" id="wall-hooks-container">
+      <!-- Hooks will be loaded here -->
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer id="footer-container"></footer>
+
+  <script>
+    // Load header and footer
+    fetch("../../partials/header.html")
+      .then(res => res.text())
+      .then(data => document.getElementById("header-container").innerHTML = data);
+
+    fetch("../../partials/footer.html")
+      .then(res => res.text())
+      .then(data => document.getElementById("footer-container").innerHTML = data);
+
+    // Wall hooks data
+    const container = document.getElementById("wall-hooks-container");
+
+    const products = [
+      { name: "Double Metal Hook", price: 50, image: "https://picsum.photos/300/200?random=31" },
+      { name: "Single Plastic Hook", price: 30, image: "https://picsum.photos/300/200?random=32" },
+      { name: "Decorative Wall Hook", price: 100, image: "https://picsum.photos/300/200?random=33" },
+      { name: "Self-Adhesive Hook", price: 40, image: "https://picsum.photos/300/200?random=34" },
+    ];
+
+    products.forEach((item) => {
+      fetch("../../partials/service/photo-mount.html")
+        .then(res => res.text())
+        .then(template => {
+          const message = `I'm interested in the ${item.name} at KES ${item.price}`;
+          const link = `https://wa.me/254712227387?text=${encodeURIComponent(message)}`;
+          const html = template
+            .replace(/{{IMAGE}}/g, item.image)
+            .replace(/{{NAME}}/g, item.name)
+            .replace(/{{PRICE}}/g, `KES ${item.price}`)
+            .replace(/{{WHATSAPP_LINK}}/g, link);
+          container.innerHTML += html;
+        });
+    });
+  </script>
+
+</body>
+</html>

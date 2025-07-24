@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>About Us - Kahoro</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+  <!-- Header -->
+  <div id="header-container"></div>
+
+  <!-- About Section -->
+  <section class="max-w-5xl mx-auto px-4 py-12 text-center">
+    <h2 class="text-4xl font-bold mb-4">About Kahoro</h2>
+    <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+      We are a trusted provider of high-quality MDF boards, photo mounts, frames, photobooks, and custom decor solutions.
+      Our commitment to craftsmanship and client satisfaction has made us a leading brand in the industry.
+    </p>
+  </section>
+
+  <!-- Timeline Section -->
+  <section class="bg-white py-12">
+    <div class="max-w-4xl mx-auto px-4">
+      <h3 class="text-3xl font-bold text-center mb-10">Our Journey</h3>
+      <div class="space-y-8 border-l-2 border-maroon-600 pl-6">
+        <div>
+          <h4 class="text-xl font-semibold">2015 - The Beginning</h4>
+          <p class="text-gray-600">Started as a small framing workshop in Nairobi, serving a few local photographers.</p>
+        </div>
+        <div>
+          <h4 class="text-xl font-semibold">2018 - Growth</h4>
+          <p class="text-gray-600">Expanded into photo mounts, customized MDF boards, and added a new production line.</p>
+        </div>
+        <div>
+          <h4 class="text-xl font-semibold">2022 - Digital Transition</h4>
+          <p class="text-gray-600">Launched our online catalog and started fulfilling orders via WhatsApp and social media.</p>
+        </div>
+        <div>
+          <h4 class="text-xl font-semibold">2024 - Today</h4>
+          <p class="text-gray-600">We serve hundreds of clients across Kenya with photo books, wall mounts, and framing products.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Team Section -->
+  <section class="py-12 bg-gray-100">
+    <div class="max-w-6xl mx-auto px-4">
+      <h3 class="text-3xl font-bold text-center mb-10">Meet the Team</h3>
+      <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+        <!-- Team Member 1 -->
+        <div class="bg-white p-6 rounded-lg shadow text-center">
+          <img src="../assets/logo/pope.jpg" alt="Joel" class="w-24 h-24 rounded-full mx-auto mb-4 object-cover">
+          <h4 class="text-xl font-semibold">Joel Mukera</h4>
+          <p class="text-gray-500">Founder & Creative Director</p>
+        </div>
+        <!-- Add more team members below if needed -->
+        <div class="bg-white p-6 rounded-lg shadow text-center">
+          <img src="https://picsum.photos/seed/teammate2/100" alt="Team Member" class="w-24 h-24 rounded-full mx-auto mb-4 object-cover">
+          <h4 class="text-xl font-semibold">Sarah N.</h4>
+          <p class="text-gray-500">Production Manager</p>
+        </div>
+        <div class="bg-white p-6 rounded-lg shadow text-center">
+          <img src="https://picsum.photos/seed/teammate3/100" alt="Team Member" class="w-24 h-24 rounded-full mx-auto mb-4 object-cover">
+          <h4 class="text-xl font-semibold">James K.</h4>
+          <p class="text-gray-500">Logistics & Sales</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <div id="footer-container"></div>
+
+  <!-- Load Partials -->
+  <script>
+    fetch("../../partials/header.html")
+      .then(res => res.text())
+      .then(data => document.getElementById("header-container").innerHTML = data);
+
+    fetch("../../partials/footer.html")
+      .then(res => res.text())
+      .then(data => document.getElementById("footer-container").innerHTML = data);
+  </script>
+</body>
+</html>

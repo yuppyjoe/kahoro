@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Printing Services - Kahoro</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+  <!-- Header -->
+  <div id="header-container"></div>
+
+  <main class="max-w-6xl mx-auto py-10 px-4">
+    <h2 class="text-3xl font-bold text-center mb-10">Printing & Lamination</h2>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6" id="print-services-container">
+      <!-- Print services will be injected here -->
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer id="footer-container"></footer>
+
+  <script>
+    // Load header and footer
+    fetch("../../partials/header.html")
+      .then(res => res.text())
+      .then(data => document.getElementById("header-container").innerHTML = data);
+
+    fetch("../../partials/footer.html")
+      .then(res => res.text())
+      .then(data => document.getElementById("footer-container").innerHTML = data);
+
+    // Print services data
+    const printContainer = document.getElementById("print-services-container");
+
+    const printServices = [
+      { name: "Photo Printing (Up to 41\")", price: "From KES 100", image: "https://picsum.photos/300/200?random=41" },
+      { name: "Photo retouching ", price: "From KES 100", image: "https://picsum.photos/300/200?random=42" },
+      { name: "Lamination (All Sizes)", price: "From KES 50", image: "https://picsum.photos/300/200?random=43" },
+    ];
+
+    printServices.forEach(item => {
+      fetch("../../partials/service/photo-mount.html")
+        .then(res => res.text())
+        .then(template => {
+          const message = `Hello, I'm interested in ${item.name} – ${item.price}. Please share more details.`;
+          const link = `https://wa.me/254712227387?text=${encodeURIComponent(message)}`;
+          const cardHTML = template
+            .replace(/{{IMAGE}}/g, item.image)
+            .replace(/{{NAME}}/g, item.name)
+            .replace(/{{PRICE}}/g, item.price)
+            .replace(/{{WHATSAPP_LINK}}/g, link);
+
+          printContainer.innerHTML += cardHTML;
+        });
+    });
+  </script>
+
+</body>
+</html>
