@@ -106,13 +106,13 @@
                 }
   
                 const message = `I'm interested in a Custom Size Photo Mount of ${width} x ${height} ${unit}. Please share pricing.`;
-                const link = `https://wa.me/254712227387?text=${encodeURIComponent(message)}`;
+                const link = `https://wa.me/254702578235?text=${encodeURIComponent(message)}`;
                 window.open(link, "_blank");
               });
             }, 100);
           } else {
             const message = `I'm interested in the ${item.name} - Size: ${item.name.split(' ')[0]}, Price: KES ${item.price}`;
-            const link = `https://wa.me/254712227387?text=${encodeURIComponent(message)}`;
+            const link = `https://wa.me/254702578235?text=${encodeURIComponent(message)}`;
             cardHTML = cardHTML.replace(/{{WHATSAPP_LINK}}/g, link);
             container.innerHTML += cardHTML;
           }
