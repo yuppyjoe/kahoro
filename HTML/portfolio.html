@@ -2,8 +2,19 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Portfolio - Kahoro</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfolio | Kahoro Mounts & Frames</title>
+  <meta name="description" content="View our recent work and creative projects showcasing MDF boards, photo mounts, and custom wall décor designs." />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Portfolio - Kahoro Mounts & Frames" />
+  <meta property="og:description" content="See real examples of our mounting, framing, and décor products in action." />
+  <meta property="og:image" content="https://https://kahoro.vercel.app/assets/og-image.jpg" />
+  <meta property="og:url" content="https://https://kahoro.vercel.app/portfolio.html" />
+  <meta property="og:type" content="website" />
+
+  <link rel="icon" type="image/x-icon" href="../assets/favicon/favicon.ico" />
+  <script src="../script/partials.js" defer></script>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.css" />
 
@@ -52,7 +63,7 @@
 <body class="bg-gray-50 text-gray-800">
 
   <!-- Header -->
-  <div id="header-container"></div>
+  <div id="header-placeholder"></div>
 
   <main class="max-w-6xl mx-auto py-10 px-4">
     <h2 class="text-3xl font-bold text-center mb-8">Our Work</h2>
@@ -72,21 +83,12 @@
   </main>
 
   <!-- Footer -->
-  <div id="footer-container"></div>
+  <div id="footer-placeholder"></div>
 
   <!-- Fancybox JS -->
   <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.js"></script>
 
   <script>
-    // Load header and footer
-    fetch("../../partials/header.html")
-      .then(res => res.text())
-      .then(data => document.getElementById("header-container").innerHTML = data);
-
-    fetch("../../partials/footer.html")
-      .then(res => res.text())
-      .then(data => document.getElementById("footer-container").innerHTML = data);
-
     // Portfolio items
     const portfolioImages = [
       { src: "../assets/mounts/2568.jpg", category: "mounts", title: "A2 Mount - Matte Finish" },

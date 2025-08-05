@@ -2,8 +2,19 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Contact Us - Kahoro</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact Us | Kahoro Mounts & Frames</title>
+  <meta name="description" content="Contact Kahoro Mounts & Frames today. Call, email, or visit our Nairobi location to place orders or ask questions." />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Contact - Kahoro Mounts & Frames" />
+  <meta property="og:description" content="Get in touch with us for quality MDF, mounts, hooks, stands, and more." />
+  <meta property="og:image" content="https://https://kahoro.vercel.app/assets/og-image.jpg" />
+  <meta property="og:url" content="https://https://kahoro.vercel.app/contact.html" />
+  <meta property="og:type" content="website" />
+
+  <link rel="icon" type="image/x-icon" href="../assets/favicon/favicon.ico" />
+  <script src="../script/partials.js" defer></script>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
     .toast {
@@ -29,7 +40,7 @@
 <body class="bg-gray-50 text-gray-800">
 
   <!-- Header -->
-  <div id="header-container"></div>
+  <div id="header-placeholder"></div>
 
   <!-- Contact Section -->
   <main class="max-w-6xl mx-auto px-4 py-12">
@@ -91,19 +102,10 @@
   <div id="toast" class="toast"></div>
 
   <!-- Footer -->
-  <div id="footer-container"></div>
+  <div id="footer-placeholder"></div>
 
   <!-- JS Scripts -->
   <script>
-    // Load Header and Footer
-    fetch("../../partials/header.html")
-      .then(res => res.text())
-      .then(data => document.getElementById("header-container").innerHTML = data);
-
-    fetch("../../partials/footer.html")
-      .then(res => res.text())
-      .then(data => document.getElementById("footer-container").innerHTML = data);
-
     // Toast Utility
     function showToast(message, isSuccess = true) {
       const toast = document.getElementById('toast');

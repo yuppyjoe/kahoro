@@ -4,14 +4,14 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <meta name="description" content="Kahoro Mounts & Frames - High quality photo mounts, frames, prints and photobooks in Nairobi.">
-<meta name="keywords" content="photo mounts, mdf boards, frames, printing, photobooks, kahoro, Nairobi">
-<meta name="author" content="Kahoro Mounts & Frames">
-<meta property="og:title" content="Kahoro Mounts & Frames" />
-<meta property="og:description" content="Explore top-notch photo mounting and framing services in Nairobi." />
-<meta property="og:image" content="https://yourdomain.com/assets/og-image.jpg" />
-<meta property="og:url" content="https://yourdomain.com/" />
-<meta name="twitter:card" content="summary_large_image" />
-<meta name="theme-color" content="#800000" />
+  <meta name="keywords" content="photo mounts, mdf boards, frames, printing, photobooks, kahoro, Nairobi">
+  <meta name="author" content="Kahoro Mounts & Frames">
+  <meta property="og:title" content="Kahoro Mounts & Frames" />
+  <meta property="og:description" content="Explore top-notch photo mounting and framing services in Nairobi." />
+  <meta property="og:image" content="kahoro.vercel.app/assets/logo/og-image.png" />
+  <meta property="og:url" content="https://https://kahoro.vercel.app/" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="theme-color" content="#800000" />
   <title>Homepage - Kahoro</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
@@ -40,21 +40,14 @@
     animation: scroll-slow 30s linear infinite;
   }
   </style>
-  <script>
-// Load header and footer
-    fetch("../../partials/header.html")
-      .then(res => res.text())
-      .then(data => document.getElementById("header-container").innerHTML = data);
-
-    fetch("../../partials/footer.html")
-      .then(res => res.text())
-      .then(data => document.getElementById("footer-container").innerHTML = data);
-  </script>
+  <!-- Load header and footer -->
+<script src="script/partials.js" defer></script>
+<script src="script/nav.js" defer></script>
 </head>
 <body class="bg-white text-gray-800">
 
   <!-- Header -->
-  <header id="header-container"></header>
+  <header id="header-placeholder"></header>
 
 <!-- Hero -->
 <section class="relative w-full h-screen overflow-hidden">
@@ -276,10 +269,11 @@
 
 
   <!-- Footer -->
-  <footer id="footer-container"></footer>
+  <footer id="footer-placeholder"></footer>
 
   <!-- Scripts -->
   <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+  <script src="script/nav.js"></script>
   <script>
     AOS.init();
 
@@ -307,6 +301,11 @@
     setInterval(nextTestimonial, 5000); // auto-slide every 5s
 
     const scrollTopBtn = document.getElementById('scrollTopBtn');
+
+    //Load Time
+    fetch("../../partials/header.html")
+      .then(res => res.text())
+      .then(data => document.getElementById("header-container").innerHTML = data);
 
   // Show/hide the button on scroll
   window.addEventListener('scroll', () => {
