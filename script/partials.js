@@ -1,15 +1,19 @@
-// Function to load HTML content
-function loadHTML(url, elementId) {
-    fetch(url)
-        .then(response => response.text())
-        .then(data => {
-            document.getElementById(elementId).innerHTML = data;
-        })
-        .catch(error => console.error(`Error loading ${url}:`, error));
-}
+// partials.js
 
-// Load header and footer on every page
-document.addEventListener('DOMContentLoaded', () => {
-    loadHTML('../partials/header.html', 'header-placeholder');
-    loadHTML('../partials/footer.html', 'footer-placeholder');
-});
+document.addEventListener("DOMContentLoaded", () => {
+    const depth = window.location.pathname.split("/").length - 2;
+    const basePath = "../".repeat(depth);
+  
+    function loadPartial(file, targetId) {
+      fetch(basePath + "partials/" + file)
+        .then(res => res.text())
+        .then(html => {
+          document.getElementById(targetId).innerHTML = html;
+        })
+        .catch(err => console.error(`Error loading ${file}:`, err));
+    }
+  
+    loadPartial("header.html", "header-placeholder");
+    loadPartial("footer.html", "footer-placeholder");
+  });
+  

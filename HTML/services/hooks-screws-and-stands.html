@@ -4,12 +4,14 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Wall Hooks - Kahoro</title>
+  <script src="script/partials.js" defer></script>
+<script src="script/nav.js" defer></script>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-gray-50 text-gray-800">
 
   <!-- Header -->
-  <div id="header-container"></div>
+  <div id="header-placeholder"></div>
 
   <main class="max-w-6xl mx-auto py-10 px-4">
     <h2 class="text-3xl font-bold text-center mb-10">Wall Hooks</h2>
@@ -20,18 +22,9 @@
   </main>
 
   <!-- Footer -->
-  <footer id="footer-container"></footer>
+  <footer id="footer-placeholder]"></footer>
 
   <script>
-    // Load header and footer
-    fetch("../../partials/header.html")
-      .then(res => res.text())
-      .then(data => document.getElementById("header-container").innerHTML = data);
-
-    fetch("../../partials/footer.html")
-      .then(res => res.text())
-      .then(data => document.getElementById("footer-container").innerHTML = data);
-
     // Wall hooks data
     const container = document.getElementById("wall-hooks-container");
 
