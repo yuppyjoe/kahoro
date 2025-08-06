@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Frames</title>
+    <script src="script/partials.js" defer></script>
+<script src="script/nav.js" defer></script>
+</head>
+<body>
+    <!-- Header  -->
+    <header class="sticky top-0 z-50 bg-white shadow-md">
+        <div class="max-w-6xl mx-auto flex justify-between items-center px-4 py-3">
+          
+          <!-- Logo -->
+          <a href="../../index.html" class="flex items-center">
+            <img src="../../assets/logo/logowhite.jpg" alt="Kahoro Mounts & Frames Logo"
+                 class="h-10 w-auto sm:h-12 object-contain" />
+          </a>
+      
+          <!-- Desktop Nav -->
+          <nav class="hidden md:block">
+            <ul class="flex gap-6 text-sm font-medium text-gray-700">
+              <li><a href="../../index.html" class="hover:text-green-600">Home</a></li>
+              <li><a href="../services.html" class="hover:text-green-600">Services</a></li>
+              <li><a href="../portfolio.html" class="hover:text-green-600">Portfolio</a></li>
+              <li><a href="../about.html" class="hover:text-green-600">About</a></li>
+              <li><a href="../contact.html" class="hover:text-green-600">Contact</a></li>
+            </ul>
+          </nav>
+      
+          <!-- Mobile Menu Button -->
+          <button id="mobile-menu-button" class="md:hidden text-gray-700 focus:outline-none">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2"
+                 viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          </button>
+        </div>
+      
+        <!-- Mobile Nav Menu -->
+        <div id="mobile-menu" class="md:hidden hidden px-4 pb-4 bg-white transition-all duration-300 ease-in-out">
+          <ul class="flex flex-col gap-4 text-sm font-medium text-gray-700">
+            <li><a href="../../index.html" class="hover:text-green-600 mobile-link">Home</a></li>
+            <li><a href="../services.html" class="hover:text-green-600 mobile-link">Services</a></li>
+            <li><a href="../portfolio.html" class="hover:text-green-600 mobile-link">Portfolio</a></li>
+            <li><a href="../about.html" class="hover:text-green-600 mobile-link">About</a></li>
+            <li><a href="../contact.html" class="hover:text-green-600 mobile-link">Contact</a></li>
+          </ul>
+        </div>
+      </header>
+<main class="p-4">
+    <h2>Frames</h2>
+    <p>High-quality frames for your custom needs.</p>
+    <ul>
+        <li>A5 - Ksh 150</li>
+        <li>A4 - Ksh 250</li>
+        <li>A3 - Ksh 400</li>
+        <li>A2 - Ksh 700</li>
+        <li>A1 - Ksh 1200</li>
+        <li>A0 - Ksh 2000</li>
+        <li>Custom: <input type="text" placeholder="Enter custom size" /></li>
+    </ul>
+    <a href="https://wa.me/254790116787?text=I%20want%20to%20order%20Frames" class="bg-green-500 text-white px-4 py-2 rounded inline-block mt-4">Order on WhatsApp</a>
+</main>
+<div id="footer-placeholder"></div>
+</body>
+</html>
