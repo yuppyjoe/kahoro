@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>View PDF - Kahoro</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+    embed {
+      height: 100%;
+      width: 100%;
+      border: none;
+    }
+  </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+  <!-- Fullscreen PDF -->
+  <embed 
+    src="../assets/Margaret Kirigo.pdf" 
+    type="application/pdf"
+  />
+
+  <!-- QR Code Fixed at Bottom Right -->
+  <div class="fixed bottom-4 right-4 z-50">
+    <div id="qrcode" class="p-3 bg-white border shadow rounded"></div>
+  </div>
+
+  <script>
+    const currentUrl = window.location.href;
+    QRCode.toCanvas(document.getElementById("qrcode"), currentUrl, {
+      width: 100,
+      margin: 1,
+      color: {
+        dark: "#000",
+        light: "#ffffff"
+      }
+    }, function (error) {
+      if (error) console.error(error);
+    });
+  </script>
+</body>
+</html>
