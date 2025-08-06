@@ -6,19 +6,50 @@
   <title>Photo Mounts - Kahoro</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="script/partials.js" defer></script>
-<script src="script/nav.js" defer></script>
-
+  <script src="script/nav.js" defer></script>
 </head>
 <body class="bg-gray-50 text-gray-800">
 
   <!-- Header -->
-  <div id="header-container"></div>
+  <header class="sticky top-0 z-50 bg-white shadow-md">
+    <div class="max-w-6xl mx-auto flex justify-between items-center px-4 py-3">
+      <a href="../../index.html" class="flex items-center">
+        <img src="../../assets/logo/logowhite.jpg" alt="Kahoro Mounts & Frames Logo"
+             class="h-10 w-auto sm:h-12 object-contain" />
+      </a>
+      <nav class="hidden md:block">
+        <ul class="flex gap-6 text-sm font-medium text-gray-700">
+          <li><a href="../../index.html" class="hover:text-green-600">Home</a></li>
+          <li><a href="../services.html" class="hover:text-green-600">Services</a></li>
+          <li><a href="../portfolio.html" class="hover:text-green-600">Portfolio</a></li>
+          <li><a href="../about.html" class="hover:text-green-600">About</a></li>
+          <li><a href="../contact.html" class="hover:text-green-600">Contact</a></li>
+        </ul>
+      </nav>
+      <button id="mobile-menu-button" class="md:hidden text-gray-700 focus:outline-none">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2"
+             viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+    </div>
+    <div id="mobile-menu" class="md:hidden hidden px-4 pb-4 bg-white transition-all duration-300 ease-in-out">
+      <ul class="flex flex-col gap-4 text-sm font-medium text-gray-700">
+        <li><a href="../../index.html" class="hover:text-green-600 mobile-link">Home</a></li>
+        <li><a href="../services.html" class="hover:text-green-600 mobile-link">Services</a></li>
+        <li><a href="../portfolio.html" class="hover:text-green-600 mobile-link">Portfolio</a></li>
+        <li><a href="../about.html" class="hover:text-green-600 mobile-link">About</a></li>
+        <li><a href="../contact.html" class="hover:text-green-600 mobile-link">Contact</a></li>
+      </ul>
+    </div>
+  </header>
 
   <main class="max-w-6xl mx-auto py-10 px-4">
-    <h2 class="text-3xl font-bold text-center mb-10">Mounting Boards</h2>
+    <h2 class="text-3xl font-bold text-center mb-4">Mounting Boards</h2>
+    <p class="text-l text-center mb-10">All Measurements are in Inches</p>
 
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6" id="photo-mount-container">
-      <!-- Mounts will be loaded here -->
+      <!-- Mounts will be dynamically injected here -->
     </div>
   </main>
 
@@ -26,45 +57,125 @@
   <footer id="footer-container"></footer>
 
   <script>
-    // Load header and footer
-    fetch("../../partials/header.html")
-      .then(res => res.text())
-      .then(data => document.getElementById("header-container").innerHTML = data);
-  
+    const mdfBoardData = [
+      {
+        category: "A5",
+        image: "https://picsum.photos/300/200?random=31",
+        options: [{ size: "6x8", price: 150 }]
+      },
+      {
+        category: "A4",
+        image: "https://picsum.photos/300/200?random=32",
+        options: [
+          { size: "8x10", price: 220 },
+          { size: "8x12", price: 240 },
+          { size: "10x12", price: 260 }
+        ]
+      },
+      {
+        category: "A3",
+        image: "https://picsum.photos/300/200?random=33",
+        options: [
+          { size: "10x14", price: 450 },
+          { size: "11x14", price: 450 },
+          { size: "12x16", price: 470 },
+          { size: "12x18", price: 500 }
+        ]
+      },
+      {
+        category: "A2",
+        image: "https://picsum.photos/300/200?random=34",
+        options: [
+          { size: "16x20", price: 800 },
+          { size: "16x24", price: 850 },
+          { size: "20x24", price: 880 }
+        ]
+      },
+      {
+        category: "A1",
+        image: "https://picsum.photos/300/200?random=35",
+        options: [
+          { size: "20x30", price: 1300 },
+          { size: "23x33", price: 1350 },
+          { size: "24x36", price: 1400 }
+        ]
+      },
+      {
+        category: "A0",
+        image: "https://picsum.photos/300/200?random=36",
+        options: [{ size: "33x46", price: 2000 }]
+      }
+    ];
+
+    const container = document.getElementById("photo-mount-container");
+
+    mdfBoardData.forEach((board, index) => {
+      const card = document.createElement("div");
+      card.className = "bg-white p-4 shadow rounded-lg";
+
+      const firstOption = board.options[0];
+      let priceDisplay = `KES ${firstOption.price}`;
+      let message = `I'm interested in the ${board.category} MDF Board (${firstOption.size}), priced at KES ${firstOption.price}.`;
+      let link = `https://wa.me/254702578235?text=${encodeURIComponent(message)}`;
+
+      if (board.options.length === 1) {
+        // No dropdown — single size
+        card.innerHTML = `
+          <img src="${board.image}" alt="${board.category} Board" class="w-full h-40 object-cover mb-4 rounded-md" />
+          <h3 class="text-xl font-semibold mb-2">${board.category} MDF Board</h3>
+          <p class="text-sm mb-1 text-gray-600">Size: ${firstOption.size}</p>
+          <p class="text-lg font-bold mb-3">${priceDisplay}</p>
+          <a href="${link}" class="block bg-green-600 text-white text-center py-2 rounded hover:bg-green-700 transition">Order via WhatsApp</a>
+        `;
+      } else {
+        const selectId = `select-${index}`;
+        const priceId = `price-${index}`;
+        const btnId = `btn-${index}`;
+        const defaultOption = board.options[1] || firstOption;
+
+        priceDisplay = `KES ${defaultOption.price}`;
+        message = `I'm interested in the ${board.category} MDF Board (${defaultOption.size}), priced at KES ${defaultOption.price}.`;
+        link = `https://wa.me/254702578235?text=${encodeURIComponent(message)}`;
+
+        card.innerHTML = `
+          <img src="${board.image}" alt="${board.category} Board" class="w-full h-40 object-cover mb-4 rounded-md" />
+          <h3 class="text-xl font-semibold mb-2">${board.category} MDF Board</h3>
+          <label for="${selectId}" class="block mb-1 text-sm text-gray-600">Select Size:</label>
+          <select id="${selectId}" class="mb-2 w-full border rounded px-2 py-1 text-sm">
+            ${board.options.map(opt => `
+              <option value="${opt.size}" data-price="${opt.price}" ${opt.size === defaultOption.size ? 'selected' : ''}>
+                ${opt.size}
+              </option>
+            `).join("")}
+          </select>
+          <p class="text-lg font-bold mb-3" id="${priceId}">${priceDisplay}</p>
+          <a href="${link}" id="${btnId}" class="block bg-green-600 text-white text-center py-2 rounded hover:bg-green-700 transition">Order via WhatsApp</a>
+        `;
+
+        setTimeout(() => {
+          const selectEl = document.getElementById(selectId);
+          const priceEl = document.getElementById(priceId);
+          const btnEl = document.getElementById(btnId);
+
+          selectEl.addEventListener("change", () => {
+            const selected = selectEl.selectedOptions[0];
+            const size = selected.value;
+            const price = selected.dataset.price;
+
+            priceEl.textContent = `KES ${price}`;
+            const updatedMsg = `I'm interested in the ${board.category} MDF Board (${size}), priced at KES ${price}.`;
+            btnEl.href = `https://wa.me/254702578235?text=${encodeURIComponent(updatedMsg)}`;
+          });
+        }, 0);
+      }
+
+      container.appendChild(card);
+    });
+
+    // Load footer
     fetch("../../partials/footer.html")
       .then(res => res.text())
       .then(data => document.getElementById("footer-container").innerHTML = data);
-  
-    // MDF Boards data
-    const container = document.getElementById("photo-mount-container");
-  
-    const mdfBoards = [
-      { name: "A5 MDF Board ", price: 150, image: "https://picsum.photos/300/200?random=31" },
-      { name: "A4 MDF Board ", price: 220, image: "https://picsum.photos/300/200?random=32" },
-      { name: "A3 MDF Board ", price: 450, image: "https://picsum.photos/300/200?random=33" },
-      { name: "A2 MDF Board ", price: 800, image: "https://picsum.photos/300/200?random=34" },
-      { name: "A1 MDF Board ", price: 1300, image: "https://picsum.photos/300/200?random=35" },
-    ];
-  
-    mdfBoards.forEach(item => {
-      fetch("../../partials/service/photo-mount.html")
-        .then(res => res.text())
-        .then(template => {
-          const message = `I'm interested in the ${item.name}, priced at KES ${item.price}.`;
-          const link = `https://wa.me/254712227387?text=${encodeURIComponent(message)}`;
-          const cardHTML = template
-            .replace(/{{IMAGE}}/g, item.image)
-            .replace(/{{NAME}}/g, item.name)
-            .replace(/{{PRICE}}/g, `KES ${item.price}`)
-            .replace(/{{WHATSAPP_LINK}}/g, link);
-  
-          container.innerHTML += cardHTML;
-        });
-    });
   </script>
-  
-  
-  
-
 </body>
 </html>

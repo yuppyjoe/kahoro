@@ -51,22 +51,35 @@
 
 <!-- Hero -->
 <section class="relative w-full h-screen overflow-hidden">
-  <!-- Video only visible on screens >= sm -->
-  <video autoplay muted loop playsinline class="absolute top-0 left-0 w-full h-full object-cover hidden sm:block">
-    <source src="https://www.w3schools.com/howto/rain.mp4" type="video/mp4">
-    Your browser does not support videos.
+  <!-- Mobile Video (visible on mobile only) -->
+  <video 
+    class="block md:hidden absolute top-0 left-0 w-full h-full object-cover z-0" 
+    autoplay muted loop playsinline>
+    <source src="https://www.w3schools.com/howto/rain.mp4" type="video/mp4" />
+    Your browser does not support the video tag.
   </video>
 
-  <!-- Overlay with dark background -->
-  <div class="absolute inset-0 bg-black bg-opacity-60 flex items-center justify-center px-4 text-center">
-    <div class="text-white" data-aos="zoom-in">
-      <h1 class="text-3xl sm:text-4xl md:text-6xl font-bold mb-4">Kahoro Mounts & Frames</h1>
-      <p class="text-base sm:text-lg md:text-xl max-w-xl mx-auto">
-        Your trusted partner in photo mounts, frames, photobooks & branding essentials.
-      </p>
-    </div>
+  <!-- Desktop Video (hidden on mobile) -->
+  <video 
+    class="hidden md:block absolute top-0 left-0 w-full h-full object-cover z-0" 
+    autoplay muted loop>
+    <source src="https://www.w3schools.com/howto/rain.mp4" type="video/mp4" />
+    Your browser does not support the video tag.
+  </video>
+
+  <!-- Overlay Content -->
+  <div class="relative z-10 flex flex-col justify-center items-center text-center h-full px-4 text-white">
+    <h1 class="text-4xl md:text-6xl font-bold mb-4">Kahoro Mounts & Frames</h1>
+    <p class="text-lg md:text-2xl max-w-xl">Custom Photo Mounts, Frames, and More</p>
+    <a href="/HTML/services.html" class="mt-6 inline-block bg-maroon text-white py-2 px-6 rounded-full hover:bg-white hover:text-maroon transition">
+      Explore Services
+    </a>
   </div>
+
+  <!-- Optional Dark Overlay -->
+  <div class="absolute top-0 left-0 w-full h-full bg-black bg-opacity-40 z-[1]"></div>
 </section>
+
 
 
 <!-- Guarantee -->
@@ -227,35 +240,35 @@
     <div class="flex gap-8 animate-scroll-slow w-max">
       <!-- Repeat this block for each partner -->
       <div class="flex-shrink-0 w-28 h-28 sm:w-32 sm:h-32 md:w-36 md:h-36 lg:w-40 lg:h-40 rounded-full bg-white p-2 shadow">
-        <img src="../assets/logo/starmounts.png" alt="Partner Logo" class="w-full h-full object-cover rounded-full" />
+        <img src="assets/logo/starmounts.png" alt="Partner Logo" class="w-full h-full object-cover rounded-full" />
       </div>
       <div class="flex-shrink-0 w-28 h-28 sm:w-32 sm:h-32 md:w-36 md:h-36 lg:w-40 lg:h-40 rounded-full bg-white p-2 shadow">
-        <img src="../assets/logo/ideal.png" alt="Partner Logo" class="w-full h-full object-cover rounded-full" />
+        <img src="assets/logo/ideal.png" alt="Partner Logo" class="w-full h-full object-cover rounded-full" />
       </div>
       <div class="flex-shrink-0 w-28 h-28 sm:w-32 sm:h-32 md:w-36 md:h-36 lg:w-40 lg:h-40 rounded-full bg-white p-2 shadow">
-        <img src="" alt="Rembo Mounts" class="w-full h-full object-cover rounded-full" />
+        <img src="/assets/logo/Yuppy.png" alt="Yuppy" class="w-full h-full object-cover rounded-full" />
       </div>
       <div class="flex-shrink-0 w-28 h-28 sm:w-32 sm:h-32 md:w-36 md:h-36 lg:w-40 lg:h-40 rounded-full bg-white p-2 shadow">
-        <img src="../assets/logo/BIIV.png" alt="BIIV" class="w-full h-full object-cover rounded-full" />
+        <img src="assets/logo/BIIV.png" alt="BIIV" class="w-full h-full object-cover rounded-full" />
       </div>
       <div class="flex-shrink-0 w-28 h-28 sm:w-32 sm:h-32 md:w-36 md:h-36 lg:w-40 lg:h-40 rounded-full bg-white p-2 shadow">
-        <img src="../assets/logo/GF.png" alt="GF" class="w-full h-full object-cover rounded-full" />
+        <img src="assets/logo/GF.png" alt="GF" class="w-full h-full object-cover rounded-full" />
       </div>
       <!-- Duplicate the above group for infinite scroll effect -->
       <div class="flex-shrink-0 w-28 h-28 sm:w-32 sm:h-32 md:w-36 md:h-36 lg:w-40 lg:h-40 rounded-full bg-white p-2 shadow">
-        <img src="../assets/logo/starmounts.png" alt="Partner Logo" class="w-full h-full object-cover rounded-full" />
+        <img src="assets/logo/starmounts.png" alt="Partner Logo" class="w-full h-full object-cover rounded-full" />
       </div>
       <div class="flex-shrink-0 w-28 h-28 sm:w-32 sm:h-32 md:w-36 md:h-36 lg:w-40 lg:h-40 rounded-full bg-white p-2 shadow">
-        <img src="../assets/logo/ideal.png" alt="Partner Logo" class="w-full h-full object-cover rounded-full" />
+        <img src="assets/logo/ideal.png" alt="Partner Logo" class="w-full h-full object-cover rounded-full" />
       </div>
       <div class="flex-shrink-0 w-28 h-28 sm:w-32 sm:h-32 md:w-36 md:h-36 lg:w-40 lg:h-40 rounded-full bg-white p-2 shadow">
-        <img src="" alt="Rembo Mounts" class="w-full h-full object-cover rounded-full" />
+        <img src="/assets/logo/Yuppy.png" alt="Rembo Mounts" class="w-full h-full object-cover rounded-full" />
       </div>
       <div class="flex-shrink-0 w-28 h-28 sm:w-32 sm:h-32 md:w-36 md:h-36 lg:w-40 lg:h-40 rounded-full bg-white p-2 shadow">
-        <img src="../assets/logo/BIIV.png" alt="BIIV" class="w-full h-full object-cover rounded-full" />
+        <img src="assets/logo/BIIV.png" alt="BIIV" class="w-full h-full object-cover rounded-full" />
       </div>
       <div class="flex-shrink-0 w-28 h-28 sm:w-32 sm:h-32 md:w-36 md:h-36 lg:w-40 lg:h-40 rounded-full bg-white p-2 shadow">
-        <img src="../assets/logo/GF.png" alt="GF" class="w-full h-full object-cover rounded-full" />
+        <img src="assets/logo/GF.png" alt="GF" class="w-full h-full object-cover rounded-full" />
       </div>
     </div>
   </div>
