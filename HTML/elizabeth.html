@@ -27,8 +27,19 @@
     type="application/pdf"
   />
 
-  <!-- QR Code Fixed at Bottom Right -->
-  <div class="fixed bottom-4 right-4 z-50">
+  <!-- Floating Controls (QR + Download) -->
+  <div class="fixed bottom-4 right-4 z-50 flex flex-col items-end gap-3">
+    
+    <!-- Download Button -->
+    <a 
+      href="../assets/elizabeth.pdf" 
+      download="Elizabeth.pdf"
+      class="px-4 py-2 bg-blue-600 text-white text-sm rounded shadow hover:bg-blue-700 transition"
+    >
+      Download PDF
+    </a>
+
+    <!-- QR Code -->
     <div id="qrcode" class="p-3 bg-white border shadow rounded"></div>
   </div>
 
